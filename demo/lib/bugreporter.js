@@ -104,7 +104,8 @@ const BugReporter = {
             windowLocation: (options.windowLocation === undefined) ? true : options.windowLocation,
             navigatorInfo: (options.navigatorInfo === undefined) ? true : options.navigatorInfo,
             takeSnapshot: (options.takeSnapshot === undefined) ? true : options.takeSnapshot,
-            screenInfo: (options.screenInfo === undefined) ? true : options.screenInfo
+            screenInfo: (options.screenInfo === undefined) ? true : options.screenInfo,
+            additionalInfo: (options.additionalInfo === undefined) ? null : options.additionalInfo,
         }
 
         if (prefs.takeSnapshot) {
@@ -129,7 +130,8 @@ const BugReporter = {
             html: (data.prefs.html ? BugReporter._getHTMLString() : null),
             windowLocation: (data.prefs.windowLocation ? {href: window.location.href, pathname: window.location.pathname, host: window.location.host, hostname: window.location.hostname, port: window.location.port, protocol: window.location.protocol, origin: window.location.origin, hash: window.location.hash} : null),
             navigatorInfo: (data.prefs.navigatorInfo ? {cookieEnabled: navigator.cookieEnabled, language: navigator.language, hardwareConcurrency: navigator.hardwareConcurrency, vendor: navigator.vendor, userAgent: navigator.userAgent} : null),
-            screenInfo: (data.prefs.screenInfo ? {width: window.screen.width, height: window.screen.height, availWidth: window.screen.availWidth, availHeight: window.screen.availHeight, colorDepth: window.screen.colorDepth, pixelDepth: window.screen.pixelDepth} : null)
+            screenInfo: (data.prefs.screenInfo ? {width: window.screen.width, height: window.screen.height, availWidth: window.screen.availWidth, availHeight: window.screen.availHeight, colorDepth: window.screen.colorDepth, pixelDepth: window.screen.pixelDepth} : null),
+            additionalInfo: data.prefs.additionalInfo
         }
 
         c(JSON.stringify(dataToBeSent));

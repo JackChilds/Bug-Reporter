@@ -1,0 +1,31 @@
+body {
+    background-color: #f4f5eb;
+}
+.center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+.pos-relative {
+    position: relative;
+}
+
+.pageSnapshot img {
+    width: 500px;
+    height: auto;
+}
+@media only screen and (max-width: 768px) {
+    .pageSnapshot img {
+        width: 200px;
+    }
+}
+
+#html-code {
+    max-height: 90vh;
+}
+
+.accordion-item, .accordion-button {
+    background-color: transparent !important;
+}

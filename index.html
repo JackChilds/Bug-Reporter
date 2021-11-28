@@ -1,7 +1,6 @@
 
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 
     <script src="lib/vendor/html2canvas/html2canvas.min.js"></script>
@@ -23,7 +22,6 @@
     </script>
 
 </head>
-
 <body>
 
 <div class="header">
@@ -81,9 +79,10 @@
                 ['User feedback', 'some text'],
                 ['More information']
             ],
-        }, (img) => {
-            // console.log(img);
-            document.body.innerHTML += '<img src="' + img + '" width="500">';
+        }, (d) => {
+            var data = JSON.parse(d);
+
+            document.body.innerHTML += '<img src="' + d.pageSnapshot + '" width="500">';
         });
     }
 </script>

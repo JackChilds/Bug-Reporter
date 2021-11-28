@@ -1,0 +1,92 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <script src="lib/vendor/html2canvas/html2canvas.min.js"></script>
+    <script src="lib/bugreporter.js"></script>
+
+    <title>User Snapshot Example</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <style>
+    *{box-sizing:border-box}body{font-family:Arial,Helvetica,sans-serif;margin:0}.header{padding:80px;text-align:center;background:#1abc9c;color:#fff}.header h1{font-size:40px}.navbar{overflow:hidden;background-color:#333;position:sticky;position:-webkit-sticky;top:0}.navbar a{float:left;display:block;color:#fff;text-align:center;padding:14px 20px;text-decoration:none}.navbar a.right{float:right}.navbar a:hover{background-color:#ddd;color:#000}.navbar a.active{background-color:#666;color:#fff}.row{display:-ms-flexbox;display:flex;-ms-flex-wrap:wrap;flex-wrap:wrap}.side{-ms-flex:30%;flex:30%;background-color:#f1f1f1;padding:20px}.main{-ms-flex:70%;flex:70%;background-color:#fff;padding:20px}.fakeimg{background-color:#aaa;width:100%;padding:20px}.footer{padding:20px;text-align:center;background:#ddd}@media screen and (max-width:700px){.row{flex-direction:column}}@media screen and (max-width:400px){.navbar a{float:none;width:100%}}button {border:none;color:white;background-color:#f44336;padding:15px 32px;text-align:center;text-decoration:none;display:inline-block;font-size:16px;margin:4px 2px;cursor: pointer;border-radius:2px;}
+    </style>
+
+    <script type="text/javascript">
+        console.log("console.log");
+        console.error("console.error");
+        console.warn("console.warn");
+        console.info("console.info");
+    </script>
+
+</head>
+
+<body>
+
+<div class="header">
+    <h1>User Snapshot Example</h1>
+    <button onclick="generateBugReport()">Click to generate a user snapshot</button>
+</div>
+
+<div class="navbar">
+    <a href="#" class="active">Home</a>
+    <a href="#">Link</a>
+    <a href="#">Link</a>
+    <a href="#" class="right">Link</a>
+</div>
+
+<div class="row">
+    <div class="side">
+        <h2>About Me</h2>
+        <h5>Photo of me:</h5>
+        <div class="fakeimg" style="height:400px;background-image: url('http://picsum.photos/id/1025/500/400');background-size: cover;">Image</div>
+        <p>Some text about me in culpa qui officia deserunt mollit anim..</p>
+        <h3>More Text</h3>
+        <p data-bugreporter-hide>Some text that will be hidden in the bug report because it might contain sensitive information</p>
+        <div class="fakeimg" style="height:60px;">Image</div><br>
+        <div class="fakeimg" style="height:60px;">Image</div><br>
+        <div class="fakeimg" style="height:60px;">Image</div>
+    </div>
+    <div class="main">
+        <h2>TITLE HEADING</h2>
+        <h5>Title description, Dec 7, 2017</h5>
+        <div class="fakeimg" style="height:500px;background-image: url('http://picsum.photos/id/10/1000/500');background-size: cover;">Image</div>
+        <p>Some text..</p>
+        <p>Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod
+            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+            ullamco.</p>
+        <br>
+        <h2>TITLE HEADING</h2>
+        <h5>Title description, Sep 2, 2017</h5>
+        <div class="fakeimg" style="height:500px;background-image: url('https://picsum.photos/id/1002/1000/500');background-size: cover;">Image</div>
+        <p>Some text..</p>
+        <p>Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod
+            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+            ullamco.</p>
+    </div>
+</div>
+
+<div class="footer">
+    <h2>Footer</h2>
+</div>
+
+<!-- Generate User Snapshot Code -->
+<script>
+    function generateBugReport() {
+        BugReporter.generate({
+            additionalData: [
+                ['User feedback', 'some text'],
+                ['More information']
+            ]
+        }, (img) => {
+            // console.log(img);
+            document.body.innerHTML += '<img src="' + img + '" width="500">';
+        });
+    }
+</script>
+
+</body>
+</html>

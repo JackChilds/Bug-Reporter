@@ -75,14 +75,27 @@
 <script>
     function generateBugReport() {
         BugReporter.generate({
-            additionalData: [
+            additionalData: [ // the additionalData array allows you to specify additional information to go alongside the bug report
                 ['User feedback', 'some text'],
-                ['More information']
+                ['More information', 'some more text']
             ],
-        }, (d) => {
-            var data = JSON.parse(d);
+            // default preferences:
+            cookies: true, // bug reporter will include cookie data
+            localStorage: true, // bug reporter will include localStorage data
+            sessionStorage: true, // bug reporter will include sessionStorage data
+            html: true, // bug reporter will include a copy of all the HTML on the page, tags with the 'data-bugreporter-hide' attribute will be omitted
+            windowLocation: true, // bug reporter will include window.location data
+            navigatorInfo: true, // bug reporter will include navigator data, including userAgent and language
+            takeSnapshot: true, // bug reporter will use html2canvas library to take a snapshot of the page. Note: you need to include html2canvas.js in your page
+            screenInfo: true, // bug reporter will include screen data
 
-            document.body.innerHTML += '<img src="' + d.pageSnapshot + '" width="500">';
+        }, (d) => {
+            const data = JSON.parse(d);
+            console.log(data);
+            let img = document.createElement('img');
+            img.src = data.pageSnapshot;
+            img.width = 500;
+            document.body.appendChild(img);
         });
     }
 </script>

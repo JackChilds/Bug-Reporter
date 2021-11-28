@@ -87,6 +87,12 @@ const BugReporter = {
         // return an array with the elements parent node, sibling before node and sibling after node
         return [e.parentNode, e.previousSibling, e.nextSibling];
     },
+    _stringify: function (value) {
+        switch (typeof value) {
+            case 'string': case 'object': return JSON.stringify(value);
+            default: return String(value);
+        }
+    },
     html2canvasSettings: {
         allowTaint: true,
         useCORS: true,
@@ -140,17 +146,17 @@ const BugReporter = {
 
 console.log = function (msg) {
     BugReporter._consoleLog(msg);
-    BugReporter.consoleOutput.push([BugReporter._getDateString(), msg, 'console.log']);
+    BugReporter.consoleOutput.push([BugReporter._getDateString(), BugReporter._stringify(msg), 'console.log']);
 }
 console.warn = function (msg) {
     BugReporter._consoleWarn(msg);
-    BugReporter.consoleOutput.push([BugReporter._getDateString(), msg, 'console.warn']);
+    BugReporter.consoleOutput.push([BugReporter._getDateString(), BugReporter._stringify(msg), 'console.warn']);
 }
 console.error = function (msg) {
     BugReporter._consoleError(msg);
-    BugReporter.consoleOutput.push([BugReporter._getDateString(), msg, 'console.error']);
+    BugReporter.consoleOutput.push([BugReporter._getDateString(), BugReporter._stringify(msg), 'console.error']);
 }
 console.info = function (msg) {
     BugReporter._consoleInfo(msg);
-    BugReporter.consoleOutput.push([BugReporter._getDateString(), msg, 'console.info']);
+    BugReporter.consoleOutput.push([BugReporter._getDateString(), BugReporter._stringify(msg), 'console.info']);
 }

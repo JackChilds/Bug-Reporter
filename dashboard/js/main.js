@@ -30,8 +30,6 @@ function uploadBugReport() {
             reader.onload = (e) => {
                 // parse the JSON
                 bugreport = JSON.parse(e.target.result);
-                
-                console.log(bugreport);
 
                 pleaseUploadNotice.style.display = 'none';
                 bugreportContainer.style.display = 'block';
@@ -58,7 +56,14 @@ function downloadHTMLCode() {
     saveAs(new Blob([bugreport.html], {type: "text/plain;charset=utf-8"}), "bugreport.html");
 }
 
-function createTableFrom2dArray(tableData, header) {
+function stringify (value) {
+    switch (typeof value) {
+        case 'string': case 'object': return JSON.stringify(value);
+        default: return String(value);
+    }
+}
+
+function createTableFrom2dArray(tableData, header, str=false) {
     // create html table from 2d array
     var table = document.createElement('table');
     var tableBody = document.createElement('tbody');
@@ -76,6 +81,7 @@ function createTableFrom2dArray(tableData, header) {
 
         rowData.forEach(function (cellData) {
             var cell = document.createElement('td');
+            if (str) cellData = stringify(cellData);
             cell.appendChild(document.createTextNode(cellData));
             row.appendChild(cell);
         });
@@ -142,6 +148,8 @@ function bugreportChanged() {
     bugreportViewer.querySelector('.dateTime').innerHTML = 'Created: <span class="text-muted">' + bugreport.dateTime + '</span>';
 
     if (bugreport.consoleOutput !== null) {
+        bugreportViewer.querySelector('#console-log-table-container').innerHTML = '<input type="text" placeholder="Search console log..." class="form-control" onkeyup="tableSearch(this, document.querySelector(\'#console-log-table-container table\'))">';
+
         var table = createTableFrom2dArray(bugreport.consoleOutput, ['Date/Time', 'Message', 'Log Type']);
         bugreportViewer.querySelector('#console-log-table-container').appendChild(table);
     } else {
@@ -149,6 +157,7 @@ function bugreportChanged() {
     }
 
     if (bugreport.cookies !== null && Object.keys(bugreport.cookies).length !== 0) {
+        bugreportViewer.querySelector('#cookies-table-container').innerHTML = '<input type="text" placeholder="Search cookies..." class="form-control" onkeyup="tableSearch(this, document.querySelector(\'#cookies-table-container table\'))">';
         var table = createTableFromObject(bugreport.cookies, ['Name', 'Value']);
         bugreportViewer.querySelector('#cookies-table-container').appendChild(table);
     } else {
@@ -156,6 +165,8 @@ function bugreportChanged() {
     }
 
     if (bugreport.localStorage !== null && Object.keys(bugreport.localStorage).length !== 0) {
+        bugreportViewer.querySelector('#local-storage-table-container').innerHTML = '<input type="text" placeholder="Search local storage..." class="form-control" onkeyup="tableSearch(this, document.querySelector(\'#local-storage-table-container table\'))">';
+
         var table = createTableFromObject(bugreport.localStorage, ['Name', 'Value']);
         bugreportViewer.querySelector('#local-storage-table-container').appendChild(table);
     } else {
@@ -163,6 +174,8 @@ function bugreportChanged() {
     }
 
     if (bugreport.sessionStorage !== null && Object.keys(bugreport.sessionStorage).length !== 0) {
+        bugreportViewer.querySelector('#session-storage-table-container').innerHTML = '<input type="text" placeholder="Search session storage..." class="form-control" onkeyup="tableSearch(this, document.querySelector(\'#session-storage-table-container table\'))">';
+
         var table = createTableFromObject(bugreport.sessionStorage, ['Name', 'Value']);
         bugreportViewer.querySelector('#session-storage-table-container').appendChild(table);
     } else {
@@ -181,5 +194,29 @@ function bugreportChanged() {
         bugreportViewer.querySelector('#screen-info-table-container').appendChild(table);
     } else {
         bugreportViewer.querySelector('#screen-info-table-container').innerHTML = 'No screen information available in bug report';
+    }
+
+    if (bugreport.additionalInfo !== null && bugreport.additionalInfo.length !== 0) {
+        bugreportViewer.querySelector('#additional-info-table-container').innerHTML = '<input type="text" placeholder="Search additional information..." class="form-control" onkeyup="tableSearch(this, document.querySelector(\'#additional-info-table-container table\'))">';
+        var table = createTableFrom2dArray(bugreport.additionalInfo, ['Property Name', 'Value'], true);
+        bugreportViewer.querySelector('#additional-info-table-container').appendChild(table);
+    } else {
+        bugreportViewer.querySelector('#additional-info-table-container').innerHTML = 'No additional information available in bug report';
+    }
+}
+
+function tableSearch(input, table) {
+    var searchInput = input.value.toLowerCase();
+    var tableRows = table.querySelectorAll('tr');
+
+    for (var i = 1; i < tableRows.length; i++) {
+        var row = tableRows[i];
+        var rowText = row.innerText.toLowerCase();
+
+        if (rowText.indexOf(searchInput) > -1) {
+            row.style.display = '';
+        } else {
+            row.style.display = 'none';
+        }
     }
 }

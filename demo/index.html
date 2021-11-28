@@ -15,10 +15,11 @@
     </style>
 
     <script type="text/javascript">
-        console.log("console.log");
-        console.error("console.error");
-        console.warn("console.warn");
-        console.info("console.info");
+        console.log("A console.log message");
+        console.error("A console.error message");
+        console.warn("A console.warn message");
+        console.info("A console.info message");
+        console.log(["an", "array", "of", "values"])
     </script>
 
     <!-- Sweetalert2 Default Theme -->
@@ -86,7 +87,8 @@
         BugReporter.generate({
             additionalInfo: [ // the additionalData array allows you to specify additional information to go alongside the bug report
                 ['User feedback', 'some text'],
-                ['More information', 'some more text']
+                ['More information', 'some more text'],
+                ['An array of integers', [1,2,3,4,5]]
             ],
             // default preferences:
             cookies: true, // bug reporter will include cookie data
@@ -100,7 +102,6 @@
 
         }, (d) => {
             const data = JSON.parse(d);
-            console.log(data);
 
             // now do something with the data like send it to your server for debugging purposes
             

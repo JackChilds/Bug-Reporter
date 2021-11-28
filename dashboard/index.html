@@ -23,7 +23,7 @@
         <div class="row p-4 shadow-sm rounded">
             <div class="col">
                 <h1 class="display-6">Bug Report Viewer</h1>
-                <br>
+                <p class="text-muted">By Jack Childs</p>
                 <button class="btn btn-success" onclick="uploadBugReport()">Upload Bug Report</button>
             </div>
             <div class="col text-end">
@@ -76,7 +76,9 @@
                         </h2>
                         <div id="flush-collapseTwo" class="accordion-collapse collapse"
                             aria-labelledby="flush-headingTwo" data-bs-parent="#bugreport-viewer-accordion">
-                            <div class="accordion-body" id="console-log-table-container"></div>
+                            <div class="accordion-body">
+                                <div id="console-log-table-container"></div>
+                            </div>
                         </div>
                     </div>
                     <div class="accordion-item">
@@ -127,11 +129,9 @@
                         </h2>
                         <div id="flush-collapseFive" class="accordion-collapse collapse"
                             aria-labelledby="flush-headingFive" data-bs-parent="#bugreport-viewer-accordion">
-                            <div class="accordion-body">Placeholder content for this accordion, which is intended to
-                                demonstrate the <code>.accordion-flush</code> class. This is the third item's accordion
-                                body. Nothing more exciting happening here in terms of content, but just filling up the
-                                space to make it look, at least at first glance, a bit more representative of how this
-                                would look in a real-world application.</div>
+                            <div class="accordion-body">
+                                <div id="additional-info-table-container"></div>
+                            </div>
                         </div>
                     </div>
                 </div>

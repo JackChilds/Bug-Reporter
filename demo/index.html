@@ -21,6 +21,9 @@
         console.info("console.info");
     </script>
 
+    <!-- Sweetalert2 Default Theme -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-default@5.0.8/default.min.css" integrity="sha256-v43W/NzPbaavipHsTh1jdc2zWJ1YSTzJlBajaQBPSlw=" crossorigin="anonymous">
+
 </head>
 <body>
 
@@ -71,6 +74,12 @@
     <h2>Footer</h2>
 </div>
 
+<!-- FileSaver.js used to download JSON file which can then be read from the dashboard -->
+<script src="https://cdn.jsdelivr.net/npm/file-saver@2.0.5/dist/FileSaver.min.js" integrity="sha256-xoh0y6ov0WULfXcLMoaA6nZfszdgI8w2CEJ/3k8NBIE=" crossorigin="anonymous"></script>
+
+<!-- Sweetalert2 to handle alerts -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.2.1/dist/sweetalert2.min.js" integrity="sha256-OVxeY1nP2DXp15LcHll2UDTcwaqvHlJ3xj1CjVLqvsY=" crossorigin="anonymous"></script>
+
 <!-- Generate User Snapshot Code -->
 <script>
     function generateBugReport() {
@@ -92,10 +101,26 @@
         }, (d) => {
             const data = JSON.parse(d);
             console.log(data);
-            let img = document.createElement('img');
-            img.src = data.pageSnapshot;
-            img.width = 500;
-            document.body.appendChild(img);
+
+            // now do something with the data like send it to your server for debugging purposes
+            
+            // ask the user with sweetalert2 if they want to download the JSON file
+            Swal.fire({
+                title: 'Bug Report Complete', 
+                text: 'Would you like to download the bug report?',
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonText: 'Yes',
+                cancelButtonText: 'No',
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+            }).then((r) => {
+                if (r.isConfirmed) {
+                    // download data as JSON file using FileSaver.js library
+                    var blob = new Blob([d], {type: "text/json;charset=utf-8"});
+                    saveAs(blob, "bug-report.json");
+                }
+            });
         });
     }
 </script>

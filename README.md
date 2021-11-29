@@ -85,3 +85,6 @@ E.g.
     Some text that will be hidden in the bug report because it might contain sensitive information
 </p>
 ```
+
+### Building a dashboard to view bug reports
+To build a dashboard, you could take inspiration from the pre-made dashboard in the `dashboard/` directory, but in short just parse the JSON file to an object, and then display the properties to the user - or just use the premade one and save some time.

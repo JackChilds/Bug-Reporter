@@ -76,3 +76,12 @@ With all features enabled, the data returned from the bug report can be accessed
   - **.protocol**, same as `window.location.protocol`
   - **.origin**, same as `window.location.origin`
   - **.hash**, same as `window.location.hash`
+
+### Hiding elements from the page snapshot and HTML code
+To hide element from the page snapshot and HTML code, because they may contain sensitive personal information that you don't want to expose in the bug report, simply add the `data-bugreporter-hide` attribute to the element.
+E.g.
+```html
+<p data-bugreporter-hide>
+    Some text that will be hidden in the bug report because it might contain sensitive information
+</p>
+```

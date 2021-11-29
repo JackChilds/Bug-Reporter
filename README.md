@@ -18,6 +18,10 @@ The only dependency for Bug Reporter is html2canvas, which you can grab from a c
 <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.3.3/dist/html2canvas.min.js" integrity="sha256-QT3W6xEiCZLGc8yEu9fiRM+V1UlKjJ/WEfg1VXnFns4=" crossorigin="anonymous"></script>
 ```
 Now, include the `bugreporter.min.js` in your project from the `dist/` directory.
+Or use the cdn:
+```
+<script src="https://cdn.jsdelivr.net/gh/JackChilds/Bug-Reporter@main/dist/bugreporter.min.js"></script>
+```
 
 ## Usage
 

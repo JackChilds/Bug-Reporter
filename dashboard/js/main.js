@@ -13,6 +13,10 @@ let bugreport = {};
  * windowLocation
 **/ 
 
+function linkToProfile() {
+    window.open('https://github.com/JackChilds');
+}
+
 const pleaseUploadNotice = document.querySelector('#please-upload-notice');
 const bugreportContainer = document.querySelector('#bugreport-container');
 const bugreportViewer = document.querySelector('#bugreport-viewer');

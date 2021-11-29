@@ -26,10 +26,13 @@ function uploadBugReport() {
         if (r.isConfirmed && document.querySelector('#bugreport_file_input').files.length > 0) {
             // read file as text with file reader API
             const file = document.querySelector('#bugreport_file_input').files[0];
+
             const reader = new FileReader();
             reader.onload = (e) => {
                 // parse the JSON
                 bugreport = JSON.parse(e.target.result);
+
+                bugreport['filename'] = file.name;
 
                 pleaseUploadNotice.style.display = 'none';
                 bugreportContainer.style.display = 'block';
@@ -131,8 +134,10 @@ function createTableFromObject(object, header) {
 }
 
 function bugreportChanged() {
+    bugreportViewer.querySelector('.filename').innerHTML = "Viewing: " + bugreport.filename;
+
     if (bugreport.windowLocation !== null) {
-        bugreportViewer.querySelector('#report-generated-from-info').innerHTML = '<p>Full URL: <span class="text-muted">' + bugreport.windowLocation.href + '</span></p><p>Hostname: <span class="text-muted">' + bugreport.windowLocation.hostname + '</span></p><p>Host: <span class="text-muted">' + bugreport.windowLocation.host + '</span></p><p>Pathname: <span class="text-muted">' + bugreport.windowLocation.pathname + '</span></p><p>Protocol: <span class="text-muted">' + bugreport.windowLocation.protocol + '</span></p><p>Port: <span class="text-muted">' + bugreport.windowLocation.port + '</span></p>';
+        bugreportViewer.querySelector('#report-generated-from-info').innerHTML = '<p>Full URL: <a class="link-secondary" href="' + bugreport.windowLocation.href + '" target="_blank">' + bugreport.windowLocation.href + '</a></p><p>Hostname: <span class="text-muted">' + bugreport.windowLocation.hostname + '</span></p><p>Host: <span class="text-muted">' + bugreport.windowLocation.host + '</span></p><p>Pathname: <span class="text-muted">' + bugreport.windowLocation.pathname + '</span></p><p>Protocol: <span class="text-muted">' + bugreport.windowLocation.protocol + '</span></p><p>Port: <span class="text-muted">' + bugreport.windowLocation.port + '</span></p>';
     } else {
         bugreportViewer.querySelector('#report-generated-from-info').innerHTML = '<p class="text-muted">No window location data available in bug report</p>';
     }

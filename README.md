@@ -43,13 +43,15 @@ BugReporter.generate({
     takeSnapshot: true, // bug reporter will use html2canvas library to take a snapshot of the page. Note: you need to include html2canvas.js in your page
     screenInfo: true, // bug reporter will include screen data
 
-}, (d) => {
-    const data = JSON.parse(d);
+}, (data) => {
+    const d = JSON.parse(data);
 
     // now do something with the data like send it to your server via a post request where the JSON can then be saved for debugging purposes
 });
 ```
-With all features enabled, the data returned from the bug report can be accessed like this.
+Alternatively, take a look at the `demo/` folder and modify the `index.html` file to fit your needs. 
+
+Data that bug reporter returns (when all features are enabled):
 - data.**additionalInfo**, the additionalInfo field
 - data.**consoleOutput**, a 2d array structured like this: `[ [date/time of console message, message logged to console, console log type] ]`
 - data.**cookies**, an object containing the cookies on the website
@@ -92,3 +94,6 @@ E.g.
 
 ### Building a dashboard to view bug reports
 To build a dashboard, you could take inspiration from the pre-made dashboard in the `dashboard/` directory, but in short just parse the JSON file to an object, and then display the properties to the user - or just use the premade one and save some time.
+
+## License
+Apache License, version 2.0

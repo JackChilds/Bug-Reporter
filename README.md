@@ -84,7 +84,7 @@ Data that bug reporter returns (when all features are enabled):
   - **.hash**, same as `window.location.hash`
 
 ### Hiding elements from the page snapshot and HTML code
-To hide element from the page snapshot and HTML code, because they may contain sensitive personal information that you don't want to expose in the bug report, simply add the `data-bugreporter-hide` attribute to the element.
+Privacy is important: if you want to hide any element from the page snapshot and HTML code,simply add the `data-bugreporter-hide` attribute to the element.
 E.g.
 ```html
 <p data-bugreporter-hide>

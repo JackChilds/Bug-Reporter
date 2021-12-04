@@ -92,7 +92,7 @@ E.g.
 </p>
 ```
 
-### Building a dashboard to view bug reports
+## Building a dashboard to view bug reports
 The build a dashboard for bug reporter you have multiple options:
 - you could use the [bug reporter dashboard](https://github.com/JackChilds/Bug-Reporter-Dashboard) project which is customizable and gives instructions on how to integrate it with your own system.
 - You could use the pre-made dashboard in this repository - `dashboard/`.

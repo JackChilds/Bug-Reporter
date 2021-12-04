@@ -93,7 +93,12 @@ E.g.
 ```
 
 ### Building a dashboard to view bug reports
-To build a dashboard, you could take inspiration from the pre-made dashboard in the `dashboard/` directory, but in short just parse the JSON file to an object, and then display the properties to the user - or just use the premade one and save some time.
+The build a dashboard for bug reporter you have multiple options:
+- you could use the [bug reporter dashboard](https://github.com/JackChilds/Bug-Reporter-Dashboard) project which is customizable and gives instructions on how to integrate it with your own system.
+- You could use the pre-made dashboard in this repository - `dashboard/`.
+- You can make a new dashboard from scratch, just take the bug report JSON file, parse it to an object and display the contents to the user.
+
+
 
 ## License
 Apache License, version 2.0

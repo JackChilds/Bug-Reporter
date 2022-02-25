@@ -10,7 +10,11 @@ An easy to use, lightweight library for generating helpful bug reports that pack
 - **Navigator and screen information**, you can choose to include information about the user agent and screen information
 - **Additional information**, optionally, you can also add your own information to be put into the bug report, e.g. you may ask the user about what it is they are experiencing
 
-To see for yourself, take a look at the [demo](https://morcreate.net/github/BugReporter/) and then upload the bug report to the [dashboard](https://morcreate.net/github/BugReporter/dashboard/) to have a look at the data collected.
+## Trying the demo
+To try the demo, simply clone this repo to your machine then use a PHP server like MAMP to run the code in the `demo/` folder.
+```sh
+gh repo clone JackChilds/Bug-Reporter
+```
 
 ## Installation
 The only dependency for Bug Reporter is html2canvas, which you can grab from a cdn. Note you won't need html2canvas if you are not using the page snapshot feature.
